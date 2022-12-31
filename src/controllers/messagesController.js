@@ -1,12 +1,13 @@
+const bcrypt = require('bcrypt')
 
 
-
-const singup = (req, res) => {
-    res.send('sing up')
-}
-
-const singin = (req, res) => {
-    res.send('sing in')
+const login = async(req, res) => {
+    const user = req.body
+    
+    const salt = await bcrypt.genSalt(10); 
+    user.password = await bcrypt.hash(user.password, salt);
+    
+    //guardar a la DB
 }
 
 
@@ -22,8 +23,7 @@ const sendMessage = (req, res) => {
 }
 
 module.exports = {
-    singup,
-    singup,
+    login,
     allMessages,
     sendMessage,
 }
