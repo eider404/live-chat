@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const signup = async(req, res) => {
     const user = req.body
-    
+
     if(!(user.username && user.password)){
         return res.status(401).json({status: 401, mensaje: "Username y password son nesesarios"})
     }
