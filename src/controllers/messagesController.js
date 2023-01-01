@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
-const { use } = require('../routes');
 const crypto = require("crypto");
+
 
 const singup = async(req, res) => {
     const user = req.body
@@ -23,23 +23,32 @@ const singup = async(req, res) => {
 }
 
 const singin = async(req, res) => {
-    const user = req.body
+    const {username, password} = req.body
     
-    const salt = await bcrypt.genSalt(10); 
-    user.password = await bcrypt.hash(user.password, salt);
-    
-    //no es lo correcto pero es muy poco probable que se repita el id
-    user.id = crypto.randomBytes(8).toString("hex");
-
+    //verifica si el usuario y la contrasena es valido
     req.getConnection((err, conn)=>{
-        if(err) { return res.send(err)}
+        conn.query("SELECT * FROM User WHERE username = ?", [username], async(err, rows)=>{
 
-        conn.query("INSERT INTO User set ?", [user], (err, rows)=>{
-            if(err) { return res.send(err) }
-            res.json(user);
+            user = rows[0];
+            
+            if(!user){
+                return res.status(404).send("El usuario no existe")
+            }
+
+            passIsValid = await bcrypt.compare(password, user.password);
+            
+            if(!passIsValid){
+                return res.send("contrasena es incorrecta")
+            }
+
+            //JWT
+
+            
         })
-        
-    })
+    }) 
+
+    //res.is
+   
 }
 
 
