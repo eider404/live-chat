@@ -3,11 +3,11 @@ const router = Router()
 
 const messegesController = require('./controllers/messagesController')
 
-router.route('/singup')
-    .post(messegesController.singup)
+router.route('/sign-up')
+    .post(messegesController.signup)
 
-router.route('/singin')
-    .post(messegesController.singin)
+router.route('/sign-in')
+    .post(messegesController.signin)
 
 router.route('/chat')
     .get(messegesController.allMessages)

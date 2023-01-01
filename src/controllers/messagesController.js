@@ -1,10 +1,16 @@
 const bcrypt = require('bcrypt');
 const crypto = require("crypto");
+const { json } = require('express');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
-
-const singup = async(req, res) => {
+const signup = async(req, res) => {
     const user = req.body
     
+    if(!(user.username && user.password)){
+        return res.status(401).json({status: 401, mensaje: "Username y password son nesesarios"})
+    }
+
     const salt = await bcrypt.genSalt(10); 
     user.password = await bcrypt.hash(user.password, salt);
     
@@ -17,12 +23,12 @@ const singup = async(req, res) => {
         conn.query("INSERT INTO User set ?", [user], (err, rows)=>{
             if(err) { return res.send(err) }
             res.json(user);
-        })
-        
+            
+        })  
     })
 }
 
-const singin = async(req, res) => {
+const signin = async(req, res) => {
     const {username, password} = req.body
     
     //verifica si el usuario y la contrasena es valido
@@ -32,23 +38,21 @@ const singin = async(req, res) => {
             user = rows[0];
             
             if(!user){
-                return res.status(404).send("El usuario no existe")
+                return res.status(401).json({status: 401, mensaje: "Username o password invalida"})
             }
 
             passIsValid = await bcrypt.compare(password, user.password);
-            
             if(!passIsValid){
-                return res.send("contrasena es incorrecta")
+                return res.status(401).json({status: 401, mensaje: "Username o password invalida"})
             }
 
             //JWT
+            const token = jwt.sign( {id: user.id}, process.env.SECRET, { expiresIn: 60 * 60});
 
-            
+            res.json({status: 200, user: username, token: token })
+
         })
     }) 
-
-    //res.is
-   
 }
 
 
@@ -68,8 +72,8 @@ const sendMessage = (req, res) => {
 }
 
 module.exports = {
-    singup,
-    singin,
+    signup,
+    signin,
     allMessages,
     sendMessage,
 }
