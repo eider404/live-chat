@@ -62,6 +62,8 @@ const signin = async(req, res) => {
 
 
 const allMessages = (req, res) => {
+    //const{idUser} = req.body
+    //console.log(idUser)
     req.getConnection((err, conn)=>{
         conn.query("SELECT * FROM Message", async(err, rows)=>{
             res.json(rows)
