@@ -58,17 +58,24 @@ const signin = async(req, res) => {
 
 
 
-
-
-
+//---------------------------------
 
 
 const allMessages = (req, res) => {
-    res.send('all Messages - get')
+    
 }
 
 const sendMessage = (req, res) => {
-    res.json(req.body)
+    const message = req.body
+    message.id = crypto.randomBytes(8).toString("hex");
+    req.getConnection((err, conn)=>{
+        //if(err) { return res.send(err)}
+
+        conn.query("INSERT INTO Message set ?", [message], (err, rows)=>{
+            //if(err) { return res.send(err) }
+            res.json(req.body);
+        }) 
+    })
 }
 
 module.exports = {
