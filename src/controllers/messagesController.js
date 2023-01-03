@@ -62,7 +62,11 @@ const signin = async(req, res) => {
 
 
 const allMessages = (req, res) => {
-    
+    req.getConnection((err, conn)=>{
+        conn.query("SELECT * FROM Message", async(err, rows)=>{
+            res.json(rows)
+        })
+    }) 
 }
 
 const sendMessage = (req, res) => {
