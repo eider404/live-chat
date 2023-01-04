@@ -12,7 +12,6 @@ router.route('/sign-in')
 
 router.route('/chat')
     .get(userExtractor, messegesController.allMessages)
-    .post(messegesController.sendMessage)
-
+    .post(userExtractor, messegesController.sendMessage)
 
 module.exports = router;

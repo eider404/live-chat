@@ -56,14 +56,12 @@ const signin = async(req, res) => {
 }
 
 
-
-
 //---------------------------------
 
 
 const allMessages = (req, res) => {
-    //const{idUser} = req.body
-    //console.log(idUser)
+    const idUser = req.body
+    console.log(idUser)
     req.getConnection((err, conn)=>{
         conn.query("SELECT * FROM Message", async(err, rows)=>{
             res.json(rows)
@@ -74,12 +72,10 @@ const allMessages = (req, res) => {
 const sendMessage = (req, res) => {
     const message = req.body
     message.id = crypto.randomBytes(8).toString("hex");
+    
     req.getConnection((err, conn)=>{
-        //if(err) { return res.send(err)}
-
         conn.query("INSERT INTO Message set ?", [message], (err, rows)=>{
-            //if(err) { return res.send(err) }
-            res.json(req.body);
+            res.json(message);
         }) 
     })
 }
