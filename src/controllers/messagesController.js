@@ -71,8 +71,13 @@ const allMessages = (req, res) => {
 
 const sendMessage = (req, res) => {
     const message = req.body
+    
     message.id = crypto.randomBytes(8).toString("hex");
     
+    //Time UTC
+    const date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    message.date = date
+
     req.getConnection((err, conn)=>{
         conn.query("INSERT INTO Message set ?", [message], (err, rows)=>{
             res.json(message);
