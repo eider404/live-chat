@@ -35,6 +35,22 @@ const signin = async(req, res) => {
     req.getConnection((err, conn)=>{
         conn.query("SELECT * FROM User WHERE username = ?", [username], async(err, rows)=>{
 
+            try {
+                user = rows[0];
+
+                passIsValid = await bcrypt.compare(password, user.password);
+                if(!passIsValid){
+                    throw new Error()
+                }
+
+                const token = jwt.sign( {id: user.id}, process.env.SECRET, { expiresIn: 60 * 60});
+
+                res.json({status: 200, user: username, token: token })
+
+            } catch (error) {
+                return res.status(401).json({status: 401, mensaje: "Username o password invalida"})
+            }
+            /*
             user = rows[0];
             
             if(!user){
@@ -50,7 +66,7 @@ const signin = async(req, res) => {
             const token = jwt.sign( {id: user.id}, process.env.SECRET, { expiresIn: 60 * 60});
 
             res.json({status: 200, user: username, token: token })
-
+            */
         })
     }) 
 }
