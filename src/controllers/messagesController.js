@@ -22,7 +22,7 @@ const signup = async(req, res) => {
 
         conn.query("INSERT INTO User set ?", [user], (err, rows)=>{
             if(err) { return res.send(err) }
-            res.status(200).json({status: 200, mensaje: "Usuario registrado"})
+            return res.status(200).json({status: 200, mensaje: "Usuario Registrado"})
             
         })  
     })
@@ -45,7 +45,7 @@ const signin = async(req, res) => {
 
                 const token = jwt.sign( {id: user.id}, process.env.SECRET, { expiresIn: 60 * 60});
 
-                res.json({status: 200, user: username, token: token })
+                res.json({status: 200, mensaje: "Usuario Logueado" ,user: username, token: token })
 
             } catch (error) {
                 return res.status(401).json({status: 401, mensaje: "Username o password invalida"})
@@ -96,7 +96,8 @@ const sendMessage = (req, res) => {
 
     req.getConnection((err, conn)=>{
         conn.query("INSERT INTO Message set ?", [message], (err, rows)=>{
-            res.json(message);
+            //res.json(message);
+            res.status(200).json({status: 200, mensaje: "Mensaje Enviado"})
         }) 
     })
 }
