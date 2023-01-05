@@ -22,7 +22,7 @@ const signup = async(req, res) => {
 
         conn.query("INSERT INTO User set ?", [user], (err, rows)=>{
             if(err) { return res.send(err) }
-            res.json(user);
+            res.status(200).json({status: 200, mensaje: "Usuario registrado"})
             
         })  
     })
