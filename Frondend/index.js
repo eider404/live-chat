@@ -42,3 +42,28 @@ function SingIn(){
             })
             .catch(err => console.log(err));
 }
+
+
+//tener los mensajes
+function GetMessages(){
+    fetch( `http://localhost:3000/chat/`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': localStorage.getItem('token'),
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(res => res.json())
+            .then( data =>{
+                generarMsg(data);
+            })
+            .catch(err => console.log(err));
+}
+function generarMsg(data){
+    document.querySelector("#respuesta").innerHTML= ''
+    for(let valor of data){
+        document.querySelector("#respuesta").innerHTML += `
+            <div> ${valor.text} </div>
+        `
+    }
+}
