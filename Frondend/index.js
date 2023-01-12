@@ -67,3 +67,27 @@ function generarMsg(data){
         `
     }
 }
+
+
+//Enviar mensaje
+function SendMessage(){
+    let formSendMessage = document.querySelector( '#form-send-message' )
+
+    const obj = {}
+    new FormData( formSendMessage ).forEach( ( value, key ) => obj[ key ] = value )
+
+    fetch( `http://localhost:3000/chat/`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': localStorage.getItem('token'),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify( obj )
+            })
+            .then(res => res.json())
+            .then( data =>{
+                document.querySelector("#isSended").innerHTML= JSON.stringify(data.mensaje) 
+                //generarMsg(data);
+            })
+            .catch(err => console.log(err));
+}

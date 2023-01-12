@@ -8,8 +8,19 @@
 </head>
 <body>
     <h2>Mensajes</h2>
-    
+
     <div id="respuesta"></div>
+
+    <form id="form-send-message" >
+        <ul>
+         <li>
+           <input type="text" id="text" name="text">
+         </li>
+         <input type="button" value="Send" onclick="SendMessage()">
+        </ul>
+    </form>
+    <div id="isSended"></div>
+    <br>
     
     <script src="./index.js"></script>
     <script>GetMessages()</script>
