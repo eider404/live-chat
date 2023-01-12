@@ -60,13 +60,11 @@ function GetMessages(){
             .catch(err => console.log(err));
 }
 function generarMsg(data){
-    console.log(data)
     data.sort((user1, user2)=>{
         if(user1.date < user2.date){
             return -1;
         }
     })
-    console.log(data)
     document.querySelector("#respuesta").innerHTML= ''
     for(let valor of data){
         document.querySelector("#respuesta").innerHTML += `
