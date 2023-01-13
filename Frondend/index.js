@@ -60,17 +60,27 @@ function GetMessages(){
             .catch(err => console.log(err));
 }
 function generarMsg(data){
-    data.sort((user1, user2)=>{
-        if(user1.date < user2.date){
-            return -1;
+    
+    if(data.length != valorAnterior.length){
+        //return console.log("es igual");
+        data.sort((user1, user2)=>{
+            if(user1.date < user2.date){
+                return -1;
+            }
+        })
+        document.querySelector("#respuesta").innerHTML= ''
+        for(let valor of data){
+            document.querySelector("#respuesta").innerHTML += `
+                <div class="message"> 
+                    <p class= "user">${valor.userId_fk}</p>
+                    <p class= "text">${valor.text}</p>
+                </div>
+            `
         }
-    })
-    document.querySelector("#respuesta").innerHTML= ''
-    for(let valor of data){
-        document.querySelector("#respuesta").innerHTML += `
-            <div> ${valor.text} </div>
-        `
+        document.getElementById('respuesta').scrollTop=document.getElementById('respuesta').scrollHeight;
+        valorAnterior = data;
     }
+    
 }
 
 
