@@ -78,7 +78,7 @@ const signin = async(req, res) => {
 const allMessages = (req, res) => {
     const idUser = req.body
     req.getConnection((err, conn)=>{
-        conn.query("SELECT * FROM Message", async(err, rows)=>{
+        conn.query("SELECT Message.id, Message.text, Message.date, Message.userId_fk, User.username FROM Message INNER JOIN User ON Message.userId_fk = User.id;", async(err, rows)=>{
             res.json(rows)
         })
     }) 

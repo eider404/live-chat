@@ -38,6 +38,8 @@ function SingIn(){
                 document.querySelector("#respuesta").innerHTML= JSON.stringify(data.mensaje) 
                 //syntax
                 localStorage.setItem('token', data.token)
+                localStorage.setItem('idUser', data.idUser)
+                //localStorage.setItem('user', data.user)
                 //generarMsg(data);
             })
             .catch(err => console.log(err));
@@ -71,11 +73,11 @@ function generarMsg(data){
         document.querySelector("#respuesta").innerHTML= ''
         for(let valor of data){
             isMyMessage=""
-            if(valor.userId_fk == 'f7002f5688c0cf09'){isMyMessage= "myMessage"}
+            if(valor.userId_fk == localStorage.getItem('idUser')){isMyMessage= "myMessage"}
 
             document.querySelector("#respuesta").innerHTML += `
                 <div class="message ${isMyMessage}"> 
-                    <p class= "user">${valor.userId_fk}</p>
+                    <p class= "user">${valor.username}</p>
                     <p class= "text">${valor.text}</p>
                 </div>
             `
