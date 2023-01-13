@@ -45,7 +45,7 @@ const signin = async(req, res) => {
 
                 const token = jwt.sign( {id: user.id}, process.env.SECRET, { expiresIn: 60 * 60});
 
-                res.json({status: 200, mensaje: "Usuario Logueado" ,user: username, token: token })
+                res.json({status: 200, mensaje: "Usuario Logueado" ,user: username, idUser: user.id , token: token })
 
             } catch (error) {
                 return res.status(401).json({status: 401, mensaje: "Username o password invalida"})
@@ -77,7 +77,6 @@ const signin = async(req, res) => {
 
 const allMessages = (req, res) => {
     const idUser = req.body
-    console.log(idUser)
     req.getConnection((err, conn)=>{
         conn.query("SELECT * FROM Message", async(err, rows)=>{
             res.json(rows)

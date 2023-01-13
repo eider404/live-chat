@@ -70,8 +70,11 @@ function generarMsg(data){
         })
         document.querySelector("#respuesta").innerHTML= ''
         for(let valor of data){
+            isMyMessage=""
+            if(valor.userId_fk == 'f7002f5688c0cf09'){isMyMessage= "myMessage"}
+
             document.querySelector("#respuesta").innerHTML += `
-                <div class="message"> 
+                <div class="message ${isMyMessage}"> 
                     <p class= "user">${valor.userId_fk}</p>
                     <p class= "text">${valor.text}</p>
                 </div>
