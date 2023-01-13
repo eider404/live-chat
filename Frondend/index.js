@@ -59,7 +59,7 @@ function GetMessages(){
             .then( data =>{
                 generarMsg(data);
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log("No tienes autorizacion"));
 }
 function generarMsg(data){
     
@@ -74,10 +74,12 @@ function generarMsg(data){
         for(let valor of data){
             isMyMessage=""
             if(valor.userId_fk == localStorage.getItem('idUser')){isMyMessage= "myMessage"}
+            //console.log(valor.date)
+            let horaEnviada = valor.date.slice(11, 16)
 
             document.querySelector("#respuesta").innerHTML += `
                 <div class="message ${isMyMessage}"> 
-                    <p class= "user">${valor.username}</p>
+                    <p class= "user">${horaEnviada} ~ ${valor.username}</p>
                     <p class= "text">${valor.text}</p>
                 </div>
             `
