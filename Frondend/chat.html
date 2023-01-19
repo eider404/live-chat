@@ -8,18 +8,28 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Mensajes</h2>
+    
+    
 
-    <div id="respuesta"></div>
+    <div class="container">
+        <div class="tittle">
+            <h2>Live Chat</h2>
+            <div class="spinner"></div>
+        </div>
 
-    <form id="form-send-message" >
-        <ul>
-         <li>
-           <input type="text" id="text" name="text">
-         </li>
-         <input type="button" value="Send" onclick="SendMessage()">
-        </ul>
-    </form>
+        <div id="respuesta"></div>
+
+        <form id="form-send-message">
+
+            <textarea type="text" id="text" name="text"></textarea> 
+        
+            <span class="btn-send" type="button" value="Send" onclick="SendMessage()"><img src="./img/paper-airplane.png"></span>
+         
+        </form>
+
+    </div>
+
+
     <div id="isSended"></div>
     <br>
     
