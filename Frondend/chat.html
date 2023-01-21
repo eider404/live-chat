@@ -23,7 +23,7 @@
 
             <textarea type="text" id="text" name="text"></textarea> 
         
-            <span class="btn-send" type="button" value="Send" onclick="ClearText()"><img src="./img/paper-airplane.png"></span>
+            <span class="btn-send" type="button" value="Send" onclick="Send()"><img src="./img/paper-airplane.png"></span>
          
         </form>
 
@@ -31,14 +31,13 @@
 
 
     <div id="isSended"></div>
-    <br>
     
     <script src="./index.js"></script>
     <script>
         let x = setInterval(GetMessages, 1000);
         let valorAnterior = []
 
-        function ClearText(){
+        function Send(){
             SendMessage()
             document.getElementById("text").value= null;
         }
