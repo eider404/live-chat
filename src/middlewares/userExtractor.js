@@ -10,7 +10,7 @@ module.exports = async(req, res, next) => {
         decodedToken = await jwt.verify(token, process.env.SECRET)
 
     } catch (error) {
-        return res.status(401).json({status: 401, mensaje: "token inexistente o expirado"})
+        return res.status(401).json({status: 401, mensaje: "token inexistente o expirado por favor Inicia sesión"})
     }
     
     message.userId_fk = decodedToken.id
