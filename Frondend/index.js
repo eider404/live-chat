@@ -59,7 +59,7 @@ function GetMessages(){
             .then( data =>{
                 generarMsg(data);
             })
-            .catch(err => console.log("No tienes autorizacion"));
+            .catch(err => document.querySelector("#isSended").innerHTML= "token inexistente o expirado por favor Inicia sesión");
 }
 function generarMsg(data){
     
