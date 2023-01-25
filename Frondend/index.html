@@ -7,6 +7,30 @@
     <title>Sing-up</title>
 </head>
 <body>
+    <Style>
+      ul{list-style:none;}
+      body{background-color: #e1e1e1; margin: 10px;text-align: center;}
+      form{
+        border-radius: 30px;
+        background-color:rgb(255, 255, 255);
+        margin: 0% auto;
+        min-width: 400px;
+        height: 200px;
+      }
+      input[type=text], input[type=password], input[type=button]{
+        margin: 10px;
+        border-radius: 15px;
+        width: 70%;
+        resize: none;
+        font-size: 20px;
+        border-width: 1px;
+      }
+      input[type=button]{
+        background-color: #4929e8;
+        width: auto;
+      }
+    </Style>
+
     <h2>Sing-up</h2>
 
     <form id="form-sing-up" >
@@ -36,7 +60,7 @@
          <label for="password">password:</label>
          <input type="password" id="password" name="password">
        </li>
-       <input type="button" value="Registrarse" onclick="SingIn()">
+       <input type="button" value="Iniciar Sesión " onclick="SingIn()">
       </ul>
     </form>
     <br>
