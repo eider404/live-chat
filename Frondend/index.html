@@ -10,14 +10,14 @@
     <Style>
       ul{list-style:none;}
       body{background-color: #e1e1e1; margin: 10px;text-align: center;}
-      form{
+      .form{
         border-radius: 30px;
         background-color:rgb(255, 255, 255);
         margin: 0% auto;
         min-width: 400px;
         height: 200px;
       }
-      input[type=text], input[type=password], input[type=button]{
+      input[type=text], input[type=password], input[type=button], input[type=submit]{
         margin: 10px;
         border-radius: 15px;
         width: 70%;
@@ -25,15 +25,15 @@
         font-size: 20px;
         border-width: 1px;
       }
-      input[type=button]{
-        background-color: #4929e8;
+      input[type=button],input[type=submit]{
+        background-color: #5b46c5;
         width: auto;
       }
     </Style>
 
     <h2>Sing-up</h2>
 
-    <form id="form-sing-up" >
+    <form id="form-sing-up" class="form">
         <ul>
          <li>
            <label for="username">Username:</label>
@@ -50,7 +50,7 @@
 
     <hr>
     <h2>Sing In</h2>
-    <form id="form-sing-in" >
+    <form id="form-sing-in" class="form">
       <ul>
        <li>
          <label for="username">Username:</label>
@@ -68,7 +68,9 @@
 
     <div id="respuesta"></div>
 
-
+    <form action="./chat.html">
+      <input type="submit" value="Ir al chat" style="background-color: #3d66f8 ;">
+    </form>
 
     <script src="./index.js"></script>
 
