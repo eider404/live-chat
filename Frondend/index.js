@@ -14,6 +14,8 @@ function SingUp(){
             .then(res => res.json())
             .then( data =>{
                 document.querySelector("#respuesta").innerHTML= JSON.stringify(data.mensaje)
+                document.querySelector("#respuesta").className = "alert alert-dark"
+                
                 //generarMsg(data);
             })
             .catch(err => console.log(err));
@@ -36,10 +38,11 @@ function SingIn(){
             .then(res => res.json())
             .then( data =>{
                 document.querySelector("#respuesta").innerHTML= JSON.stringify(data.mensaje) 
+                document.querySelector("#respuesta").className = "alert alert-dark"
                 //syntax
                 localStorage.setItem('token', data.token)
                 localStorage.setItem('idUser', data.idUser)
-                if(localStorage.getItem('token').length >10){
+                if(localStorage.getItem('token').length >159){
                     window.location.href = "/chat.html";
                 }
                 //localStorage.setItem('user', data.user)
