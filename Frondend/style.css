@@ -149,3 +149,13 @@ img{
 
 } 
 
+.button_bottom{
+    min-width: 200px;
+    font-family: "RM Neue",sans-serif;
+    padding: 10px 21px;
+    border-radius: 25px;
+    border: 0px; 
+    color: white;
+    margin: 5px;
+}
+

@@ -22,11 +22,15 @@
         
             <span class="btn-send" type="button" value="Send" onclick="Send()"><img src="./img/paper-airplane.png"></span>
         </form>
+        <div style="text-align: center;">
+            <button class="button_bottom" style="background-color: #4929e8;" onclick="window.location.href = '/'; ">Login</button>
+            <button class="button_bottom" style="background-color: #930153;" onclick="window.location.href = '/'; localStorage.setItem('token', null)">Log-Out</button>
+        </div> 
 
     </div>
 
+    <div id="isSended" style="text-align: center;"></div>
 
-    <div id="isSended"></div>
     
     <script src="./index.js"></script>
     <script>
