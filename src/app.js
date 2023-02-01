@@ -16,7 +16,8 @@ try {
 
 app.use(cors())
 app.use(express.json());
-app.use('/',router)
+app.use('/',router);
+app.use('/',express.static('Frondend'));
 
 app.listen(3000,()=>{
     console.log('SERVER RUNING ON PORT 3000...')
